@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: se35.device.service
+---
+testFramework: kotlintest
+sourceLanguage: kotlin
