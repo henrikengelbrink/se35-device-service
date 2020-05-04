@@ -16,9 +16,9 @@ class Subscription private constructor(
             var payment: PaymentType? = null,
             var yearlyPayments: Boolean? = null,
             var advancedGuaranteeUntil: Date? = null,
-            var supplementFlat: Boolean? = null,
+            var supplementFlat: Boolean = false,
             var predictiveMaintenance: Boolean? = null,
-            var serviceFlatLevel: Int? = null
+            var serviceFlatLevel: Int = 1
     ) {
         fun payment(payment: PaymentType) = apply {
             this.payment = payment

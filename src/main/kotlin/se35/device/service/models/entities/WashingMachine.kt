@@ -9,5 +9,6 @@ class WashingMachine(
         override val userId: UUID,
         override val type: DeviceType,
         val model: WashingMachineModel,
-        val wpsEnabled: Boolean
+        val wpsEnabled: Boolean,
+        val location: Locale
 ): BaseEntity(), Device
