@@ -13,6 +13,7 @@ class DryerDTOEntityConverter: DeviceDTOEntityConverter {
         val dryerDTO = dto as CreateDryerDTO
         return Dryer(
                 type = DeviceType.DRYER,
+                userId = dryerDTO.userId,
                 model = dryerDTO.model,
                 dryerType = dryerDTO.model.dryerType
         )

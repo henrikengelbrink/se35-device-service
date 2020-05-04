@@ -14,6 +14,7 @@ class WashingMachineDTOEntityConverter: DeviceDTOEntityConverter {
         val washingMachineDTO = dto as CreateWashingMachineDTO
         return WashingMachine(
                 type = DeviceType.WASHING_MACHINE,
+                userId = washingMachineDTO.userId,
                 model = washingMachineDTO.model,
                 wpsEnabled = washingMachineDTO.wpsEnabled
         )
