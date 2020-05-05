@@ -23,26 +23,22 @@ class CreateDeviceDTODeserializer : JsonDeserializer<CreateDeviceDTO>() {
         if (node.get("type") == null) {
             throw APIException(APIExceptionCode.CREATE_DEVICE_INVALID_TYPE)
         }
-        val type = node.get("type").asText()
-        val instanceClass = instanceClassFactory(type)
+        val mapper = jsonMapper()
+        return when(node.get("type").asText()) {
+            DeviceType.WASHING_MACHINE.name -> mapper.readValue(node.toString(), CreateWashingMachineDTO::class.java)
+            DeviceType.DRYER.name -> mapper.readValue(node.toString(), CreateDryerDTO::class.java)
+            else -> throw APIException(APIExceptionCode.CREATE_DEVICE_INVALID_TYPE)
+        }
+    }
 
+    private fun jsonMapper(): ObjectMapper {
         val mapper = jacksonObjectMapper()
                 .registerModule(Jdk8Module())
                 .registerModule(JavaTimeModule())
         mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         mapper.dateFormat = StdDateFormat()
-
-        return mapper.readValue(node.toString(), instanceClass)
-    }
-
-    // Factory Method
-    private fun instanceClassFactory(type: String): Class<out CreateDeviceDTO> {
-        return when(type) {
-            DeviceType.WASHING_MACHINE.name -> CreateWashingMachineDTO::class.java
-            DeviceType.DRYER.name -> CreateDryerDTO::class.java
-            else -> throw APIException(APIExceptionCode.CREATE_DEVICE_INVALID_TYPE)
-        }
+        return mapper
     }
 
 }
