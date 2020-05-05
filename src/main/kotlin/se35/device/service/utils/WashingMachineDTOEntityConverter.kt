@@ -7,6 +7,7 @@ import se35.device.service.dto.interfaces.DeviceDTO
 import se35.device.service.models.entities.WashingMachine
 import se35.device.service.models.enums.DeviceType
 import se35.device.service.models.interfaces.Device
+import java.util.*
 
 class WashingMachineDTOEntityConverter: DeviceDTOEntityConverter {
 
@@ -16,7 +17,8 @@ class WashingMachineDTOEntityConverter: DeviceDTOEntityConverter {
                 type = DeviceType.WASHING_MACHINE,
                 userId = washingMachineDTO.userId,
                 model = washingMachineDTO.model,
-                wpsEnabled = washingMachineDTO.wpsEnabled
+                wpsEnabled = washingMachineDTO.wpsEnabled,
+                location = Locale.GERMANY
         )
     }
 

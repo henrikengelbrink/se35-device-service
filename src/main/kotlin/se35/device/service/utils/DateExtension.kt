@@ -12,3 +12,9 @@ object DateExtension {
 
 }
 
+/*
+
+    Usage:
+    val dateIn5Years = DateExtension.dateInYears(5)
+
+ */
