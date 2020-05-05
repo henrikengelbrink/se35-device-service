@@ -13,7 +13,7 @@ class WashingMachineService {
     private lateinit var washingCycleRepository: WashingCycleRepository
 
     fun loadWashingMachineCyclesForMachine(machine: WashingMachine): List<WashingCycleDTO> {
-        val allCycles = washingCycleRepository.findByMachineId(machineId = machine.id)
+        val allCycles = washingCycleRepository.findByMachineIdProjection(machineId = machine.id)
         val allCycleDTOs = mutableListOf<WashingCycleDTO>()
         for (cycle in allCycles) {
             var waterUsage = cycle.waterUsage.waterUsage
